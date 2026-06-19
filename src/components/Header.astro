@@ -1,0 +1,20 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import LangToggle from './LangToggle.astro';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+---
+
+<header class="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
+  <a href={`/${locale}/`} class="text-lg font-bold hover:text-[var(--color-accent)] transition-colors duration-200">
+    Gen
+  </a>
+  <nav class="flex items-center gap-3" aria-label="Header navigation">
+    <ThemeToggle />
+    <LangToggle {locale} />
+  </nav>
+</header>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const alternate = locale === 'es' ? 'en' : 'es';
+---
+
+<a
+  href={`/${alternate}/`}
+  class="px-3 py-1.5 text-sm rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200"
+  aria-label={`Switch to ${alternate === 'es' ? 'Spanish' : 'English'}`}
+>
+  {alternate.toUpperCase()}
+</a>
