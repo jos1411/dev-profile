@@ -11,37 +11,41 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 ---
 
-<header class="flex flex-wrap items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
-  <a href={`/${locale}/`} class="text-lg font-bold hover:text-[var(--color-accent)] transition-colors duration-200">
-    JDMV
-  </a>
-  <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
-    <a href="#about" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.about']}</a>
-    <a href="#projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.projects']}</a>
-    <a href="#experience" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.experience']}</a>
-    <a href="#contact" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.contact']}</a>
-  </nav>
-  <div class="flex items-center gap-3">
-    <!-- Hamburger button (mobile only) -->
-    <button
-      id="mobile-menu-toggle"
-      class="md:hidden p-2 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200 cursor-pointer"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-    >
-      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="true" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-    <ThemeToggle />
-    <LangToggle {locale} />
+<header class="sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)]">
+  <div class="flex items-center justify-between px-6 py-4">
+    <a href={`/${locale}/`} class="text-lg font-bold hover:text-[var(--color-accent)] transition-colors duration-200">
+      JDMV
+    </a>
+    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+      <a href="#about" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.about']}</a>
+      <a href="#projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.projects']}</a>
+      <a href="#experience" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.experience']}</a>
+      <a href="#contact" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.contact']}</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <!-- Hamburger button (mobile only) -->
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden p-2 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200 cursor-pointer"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <ThemeToggle />
+      <LangToggle {locale} />
+    </div>
   </div>
   <!-- Mobile navigation dropdown -->
-  <nav id="mobile-nav" class="hidden w-full flex-col gap-4 pt-4 pb-2 md:hidden" aria-label="Mobile navigation">
-    <a href="#about" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.about']}</a>
-    <a href="#projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.projects']}</a>
-    <a href="#experience" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.experience']}</a>
-    <a href="#contact" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.contact']}</a>
+  <nav id="mobile-nav" class="hidden md:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]" aria-label="Mobile navigation">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      <a href="#about" class="block py-3 px-4 rounded-lg text-base text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200">{t['nav.about']}</a>
+      <a href="#projects" class="block py-3 px-4 rounded-lg text-base text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200">{t['nav.projects']}</a>
+      <a href="#experience" class="block py-3 px-4 rounded-lg text-base text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200">{t['nav.experience']}</a>
+      <a href="#contact" class="block py-3 px-4 rounded-lg text-base text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200">{t['nav.contact']}</a>
+    </div>
   </nav>
 </header>
 
