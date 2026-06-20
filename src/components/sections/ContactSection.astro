@@ -15,8 +15,10 @@ const { t } = Astro.props;
   <p class="text-[var(--color-text-muted)] mb-8">{t['contact.location']}</p>
   <div class="flex flex-wrap justify-center gap-4">
     <a
-      href="mailto:josedanielmvred@gmail.com"
-      aria-label="Email"
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=josedanielmvred@gmail.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Email (opens in new tab)"
       class="animated-link px-6 py-3 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200"
     >
       {t['contact.email']}
