@@ -1,23 +1,22 @@
 ---
-import type { Dictionary } from '../../i18n';
+import type { Dictionary } from '../i18n';
+import { SOCIAL } from '../data/social';
 
 interface Props {
   t: Dictionary;
 }
 
 const { t } = Astro.props;
-const year = new Date().getFullYear();
-const copyrightText = t['footer.copyright'].replace('{year}', String(year));
 ---
 
 <footer class="px-6 py-8 border-t border-[var(--color-border)]">
   <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
     <p class="text-sm text-[var(--color-text-muted)]">
-      {copyrightText}
+      <span data-i18n-copyright>{t['footer.copyright']}</span>
     </p>
     <div class="flex items-center gap-4">
       <a
-        href="https://github.com/jos1411"
+        href={SOCIAL.github}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub (opens in new tab)"
@@ -26,7 +25,7 @@ const copyrightText = t['footer.copyright'].replace('{year}', String(year));
         GitHub
       </a>
       <a
-        href="https://www.linkedin.com/in/jos%C3%A9-daniel-monge-varela-99515a412"
+        href={SOCIAL.linkedin}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn (opens in new tab)"
@@ -37,3 +36,12 @@ const copyrightText = t['footer.copyright'].replace('{year}', String(year));
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  (function() {
+    var el = document.querySelector('[data-i18n-copyright]');
+    if (el) {
+      el.textContent = el.textContent.replace('{year}', new Date().getFullYear());
+    }
+  })();
+</script>

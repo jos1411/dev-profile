@@ -7,7 +7,7 @@ const { text } = Astro.props;
 ---
 
 <div class="font-mono text-sm md:text-base text-[var(--color-text-muted)] bg-[var(--color-bg-alt)] rounded-lg p-4 border border-[var(--color-border)] overflow-hidden" role="status" aria-live="polite">
-  <span class="terminal-text" data-text={text}></span>
+  <span class="terminal-text" data-text={text}>{text}</span>
   <span class="terminal-cursor animate-pulse">|</span>
 </div>
 
@@ -18,9 +18,12 @@ const { text } = Astro.props;
     const fullText = el.getAttribute('data-text') || '';
 
     if (prefersReducedMotion) {
-      el.textContent = fullText;
+      // Already has SSR text, no need to set
       return;
     }
+
+    // Clear SSR text before starting typewriter
+    el.textContent = '';
 
     let index = 0;
     const speed = 50;

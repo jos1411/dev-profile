@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const esTitle = 'Página no encontrada';
+const enTitle = 'Page not found';
+const esMessage = 'La página que buscás no existe.';
+const enMessage = 'The page you are looking for does not exist.';
+const backLabel = 'Volver al inicio / Back to home';
+---
+
+<BaseLayout locale="es" title={`${esTitle} | ${enTitle}`} description="">
+  <main class="flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
+    <h1 class="text-6xl md:text-8xl font-bold text-[var(--color-accent)] mb-4">404</h1>
+    <p class="text-xl md:text-2xl mb-2">{esMessage}</p>
+    <p class="text-xl md:text-2xl text-[var(--color-text-muted)] mb-8">{enMessage}</p>
+    <a
+      href="/es/"
+      class="px-6 py-3 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] transition-colors duration-200"
+    >
+      {backLabel}
+    </a>
+  </main>
+</BaseLayout>

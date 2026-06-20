@@ -92,4 +92,7 @@ a.animated-link:hover::after {
     transition-duration: 0s !important;
     transition-delay: 0s !important;
   }
+  html {
+    scroll-behavior: auto !important;
+  }
 }

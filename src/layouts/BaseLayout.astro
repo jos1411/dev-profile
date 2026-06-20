@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SOCIAL } from '../data/social';
 
 interface Props {
   locale: 'es' | 'en';
@@ -9,6 +10,7 @@ interface Props {
 
 const { locale, title, description } = Astro.props;
 
+// TODO: Replace {domain} with actual domain before deployment
 // SEO configuration — replace {domain} with actual domain
 const domain = '{domain}';
 const currentUrl = `https://${domain}/${locale}/`;
@@ -24,8 +26,8 @@ const jsonLd = {
   url: `https://${domain}`,
   jobTitle: 'Fullstack .NET Developer & AI Specialist',
   sameAs: [
-    'https://www.linkedin.com/in/jos%C3%A9-daniel-monge-varela-99515a412',
-    'https://github.com/jos1411',
+    SOCIAL.linkedin,
+    SOCIAL.github,
   ],
 };
 ---
@@ -74,7 +76,8 @@ const jsonLd = {
 
     <!-- FOUC prevention: runs before first paint -->
     <script is:inline>
-      const t = localStorage.getItem('theme');
+      let t = null;
+      try { t = localStorage.getItem('theme'); } catch {}
       const d = t ? t === 'dark' : matchMedia('(prefers-color-scheme:dark)').matches;
       if (d) document.documentElement.classList.add('dark');
     </script>
