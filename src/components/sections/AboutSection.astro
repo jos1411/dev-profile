@@ -1,0 +1,36 @@
+---
+import type { Dictionary } from '../../i18n';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { t } = Astro.props;
+
+const strengths = [
+  t['about.strength.1'],
+  t['about.strength.2'],
+  t['about.strength.3'],
+  t['about.strength.4'],
+  t['about.strength.5'],
+  t['about.strength.6'],
+  t['about.strength.7'],
+];
+---
+
+<section id="about" class="px-6 py-20 max-w-3xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold mb-6">
+    {t['about.title']}
+  </h2>
+  <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-8">
+    {t['about.description']}
+  </p>
+  <ul class="space-y-3">
+    {strengths.map((s) => (
+      <li class="flex items-start gap-3">
+        <span class="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] flex-shrink-0"></span>
+        <span class="text-sm text-[var(--color-text-muted)]">{s}</span>
+      </li>
+    ))}
+  </ul>
+</section>

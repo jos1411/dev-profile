@@ -56,7 +56,7 @@ body {
 }
 
 /* ── Link Hover Animation ──────────────────────────────────── */
-a {
+a.animated-link {
   position: relative;
   text-decoration: none;
 }
@@ -74,6 +74,12 @@ a.animated-link::after {
 
 a.animated-link:hover::after {
   width: 100%;
+}
+
+/* ── Focus Visible ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 /* ── Reduced Motion ────────────────────────────────────────── */

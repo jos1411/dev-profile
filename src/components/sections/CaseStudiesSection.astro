@@ -1,0 +1,66 @@
+---
+import type { Dictionary } from '../../i18n';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { t } = Astro.props;
+
+const cases = [
+  {
+    title: t['cases.1.title'],
+    description: t['cases.1.description'],
+    tech: t['cases.1.tech'],
+    outcome: t['cases.1.outcome'],
+  },
+  {
+    title: t['cases.2.title'],
+    description: t['cases.2.description'],
+    tech: t['cases.2.tech'],
+    outcome: t['cases.2.outcome'],
+  },
+  {
+    title: t['cases.3.title'],
+    description: t['cases.3.description'],
+    tech: t['cases.3.tech'],
+    outcome: t['cases.3.outcome'],
+  },
+] as const;
+
+const otherProjects = [
+  {
+    title: t['cases.other.1.title'],
+    description: t['cases.other.1.description'],
+    tech: t['cases.other.1.tech'],
+  },
+];
+---
+
+<section id="projects" class="px-6 py-20 max-w-4xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+    {t['cases.title']}
+  </h2>
+  <div class="grid gap-8 md:grid-cols-3">
+    {cases.map((c) => (
+      <article class="flex flex-col p-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)]">
+        <h3 class="text-xl font-bold mb-2">{c.title}</h3>
+        <p class="text-[var(--color-text-muted)] text-sm mb-4 flex-grow">{c.description}</p>
+        <p class="text-xs text-[var(--color-text-muted)] font-mono mb-2">{c.tech}</p>
+        <p class="text-sm font-medium text-[var(--color-accent)]">{c.outcome}</p>
+      </article>
+    ))}
+  </div>
+  <div class="mt-12">
+    <h3 class="text-lg font-bold mb-4 text-[var(--color-text-muted)]">{t['cases.other.title']}</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      {otherProjects.map((p) => (
+        <article class="flex flex-col p-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] opacity-75">
+          <h4 class="text-sm font-bold mb-1">{p.title}</h4>
+          <p class="text-[var(--color-text-muted)] text-xs mb-2">{p.description}</p>
+          <p class="text-xs text-[var(--color-text-muted)] font-mono">{p.tech}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import type { Dictionary } from '../../i18n';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { t } = Astro.props;
+
+const categories = [
+  {
+    label: t['stack.backend'],
+    techs: ['C#', 'ASP.NET MVC', 'ASP.NET Web API', '.NET 6+', 'Python', 'FastAPI'],
+  },
+  {
+    label: t['stack.data'],
+    techs: ['SQL Server', 'ADO.NET', 'Stored Procedures', 'Supabase'],
+  },
+  {
+    label: t['stack.frontend'],
+    techs: ['JavaScript', 'TypeScript', 'React', 'Astro', 'HTML/CSS', 'WordPress'],
+  },
+  {
+    label: t['stack.ai'],
+    techs: ['Claude Code', 'OpenCode', 'GitHub Copilot', 'Cursor', 'OpenAI API', 'Claude API'],
+  },
+  {
+    label: t['stack.devops'],
+    techs: ['Git', 'GitHub', 'Docker', 'CI/CD', 'Azure DevOps', 'Jira'],
+  },
+  {
+    label: t['stack.infra'],
+    techs: ['Linux', 'Vercel', 'SmarterASP.net', 'Hostinger', 'SSL', 'CCNA', 'Cisco'],
+  },
+];
+---
+
+<section class="px-6 py-20 max-w-4xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">
+    {t['stack.title']}
+  </h2>
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {categories.map((cat) => (
+      <div class="flex flex-col">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--color-accent)] mb-3">
+          {cat.label}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {cat.techs.map((tech) => (
+            <span class="px-3 py-1 text-xs font-mono rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] bg-[var(--color-bg-alt)]">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

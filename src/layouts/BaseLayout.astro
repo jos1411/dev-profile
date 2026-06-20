@@ -8,6 +8,26 @@ interface Props {
 }
 
 const { locale, title, description } = Astro.props;
+
+// SEO configuration — replace {domain} with actual domain
+const domain = '{domain}';
+const currentUrl = `https://${domain}/${locale}/`;
+const alternateLocale = locale === 'es' ? 'en' : 'es';
+const alternateUrl = `https://${domain}/${alternateLocale}/`;
+const ogImage = `https://${domain}/og-image.svg`;
+
+// JSON-LD structured data (Person schema)
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'José Daniel Monge Varela',
+  url: `https://${domain}`,
+  jobTitle: 'Fullstack .NET Developer & AI Specialist',
+  sameAs: [
+    'https://www.linkedin.com/in/jos%C3%A9-daniel-monge-varela-99515a412',
+    'https://github.com/jos1411',
+  ],
+};
 ---
 
 <!doctype html>
@@ -17,6 +37,33 @@ const { locale, title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={currentUrl} />
+
+    <!-- Hreflang alternate links -->
+    <link rel="alternate" hreflang={locale} href={currentUrl} />
+    <link rel="alternate" hreflang={alternateLocale} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={`https://${domain}/es/`} />
+
+    <!-- Open Graph tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale:alternate" content={alternateLocale === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:site_name" content="José Daniel Monge Varela" />
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Font preload -->
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/geist-regular.woff2" />
@@ -33,6 +80,9 @@ const { locale, title, description } = Astro.props;
     </script>
   </head>
   <body class="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen transition-[background-color,color] duration-200">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-white focus:rounded-lg">
+      Skip to content
+    </a>
     <slot />
   </body>
 </html>

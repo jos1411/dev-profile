@@ -1,0 +1,42 @@
+---
+import type { Dictionary } from '../../i18n';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { t } = Astro.props;
+
+const practices = [
+  t['security.practice.1'],
+  t['security.practice.2'],
+  t['security.practice.3'],
+];
+---
+
+<section class="px-6 py-20 max-w-3xl mx-auto">
+  <h2 class="text-3xl md:text-4xl font-bold mb-6">
+    {t['security.title']}
+  </h2>
+  <div class="flex flex-col md:flex-row items-start gap-8">
+    <div class="flex-grow">
+      <p class="text-lg text-[var(--color-text-muted)] leading-relaxed mb-4">
+        {t['security.description']}
+      </p>
+      <ul class="space-y-2">
+        {practices.map((p) => (
+          <li class="flex items-start gap-2">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] flex-shrink-0 opacity-60"></span>
+            <span class="text-sm text-[var(--color-text-muted)]">{p}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="flex-shrink-0 flex flex-col items-center gap-2">
+      <div class="w-16 h-16 rounded-full border-2 border-[var(--color-border)] flex items-center justify-center text-xs font-mono text-[var(--color-text-muted)]">
+        CCNA2
+      </div>
+      <span class="text-xs text-[var(--color-text-muted)]">Certified</span>
+    </div>
+  </div>
+</section>

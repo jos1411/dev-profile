@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import AboutSection from '../../components/sections/AboutSection.astro';
+import TechStackSection from '../../components/sections/TechStackSection.astro';
+import CaseStudiesSection from '../../components/sections/CaseStudiesSection.astro';
+import ExperienceSection from '../../components/sections/ExperienceSection.astro';
+import AISection from '../../components/sections/AISection.astro';
+import SecuritySection from '../../components/sections/SecuritySection.astro';
+import EducationSection from '../../components/sections/EducationSection.astro';
+import ContactSection from '../../components/sections/ContactSection.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { getTranslations } from '../../i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'es' } },
+    { params: { locale: 'en' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const t = getTranslations(locale);
+---
+
+<BaseLayout locale={locale} title={t['seo.title']} description={t['seo.description']}>
+  <Header locale={locale} />
+  <main id="main-content">
+    <HeroSection {t} />
+    <AboutSection {t} />
+    <TechStackSection {t} />
+    <CaseStudiesSection {t} />
+    <ExperienceSection {t} />
+    <AISection {t} />
+    <SecuritySection {t} />
+    <EducationSection {t} />
+    <ContactSection {t} />
+  </main>
+  <Footer {t} />
+</BaseLayout>

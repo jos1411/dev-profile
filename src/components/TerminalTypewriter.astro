@@ -1,0 +1,46 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="font-mono text-sm md:text-base text-[var(--color-text-muted)] bg-[var(--color-bg-alt)] rounded-lg p-4 border border-[var(--color-border)] overflow-hidden" role="status" aria-live="polite">
+  <span class="terminal-text" data-text={text}></span>
+  <span class="terminal-cursor animate-pulse">|</span>
+</div>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.terminal-text').forEach((el) => {
+    const fullText = el.getAttribute('data-text') || '';
+
+    if (prefersReducedMotion) {
+      el.textContent = fullText;
+      return;
+    }
+
+    let index = 0;
+    const speed = 50;
+    const startDelay = 300;
+
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (index < fullText.length) {
+          el.textContent += fullText.charAt(index);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, speed);
+    }, startDelay);
+  });
+</script>
+
+<style>
+  .terminal-cursor {
+    color: var(--color-accent);
+  }
+</style>

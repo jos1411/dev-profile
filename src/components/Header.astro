@@ -1,18 +1,26 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import LangToggle from './LangToggle.astro';
+import { getTranslations } from '../i18n';
 
 interface Props {
   locale: 'es' | 'en';
 }
 
 const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <header class="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
   <a href={`/${locale}/`} class="text-lg font-bold hover:text-[var(--color-accent)] transition-colors duration-200">
-    Gen
+    JDMV
   </a>
+  <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <a href="#about" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.about']}</a>
+    <a href="#projects" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.projects']}</a>
+    <a href="#experience" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.experience']}</a>
+    <a href="#contact" class="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200">{t['nav.contact']}</a>
+  </nav>
   <nav class="flex items-center gap-3" aria-label="Header navigation">
     <ThemeToggle />
     <LangToggle {locale} />

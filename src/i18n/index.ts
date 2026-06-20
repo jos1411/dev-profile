@@ -16,10 +16,3 @@ export function getTranslations(locale: string): Dictionary {
   }
   return dictionaries.es;
 }
-
-/**
- * Returns the alternate locale (es → en, en → es).
- */
-export function getAlternateLocale(locale: string): Locale {
-  return locale === 'es' ? 'en' : 'es';
-}
